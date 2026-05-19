@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ndongozi Chris Arsene — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#0f0e0c; --bg2:#181614; --bg3:#231f1b;
+      --green:#22c55e; --greend:#16a34a; --greeng:rgba(34,197,94,.10);
+      --choco:#7c3f1e; --chocol:#b5632a; --chocog:rgba(124,63,30,.15);
+      --purple:#a855f7; --purpled:#7c3aed; --purpleg:rgba(168,85,247,.10);
+      --orange:#f97316; --oranged:#ea580c; --orangeg:rgba(249,115,22,.10);
+      --gray:#6b7280; --grayl:#9ca3af; --grayd:#374151;
+      --text:#f0ece6; --textm:#9ca3af;
+      --border:rgba(255,255,255,.07); --card:rgba(255,255,255,.025);
+      --r:16px; --rs:10px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0}
+    h1,h2,h3,h4,.nb{font-family:'Syne',sans-serif}
+    .slbl{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:block}
+    .stitle{font-family:'Syne',sans-serif;font-size:clamp(28px,4.5vw,44px);font-weight:800;line-height:1.15;color:#fff;margin-bottom:14px}
+
+    /* NAVBAR */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(15,14,12,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+    .nb{font-size:20px;font-weight:800;color:#fff;text-decoration:none}
+    .nb span{color:var(--green)}
+    .nl{display:flex;list-style:none;gap:24px}
+    .nl a{text-decoration:none;color:var(--textm);font-size:13.5px;font-weight:500;position:relative;transition:color .2s}
+    .nl a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--green);border-radius:2px;transition:width .25s}
+    .nl a:hover{color:#fff}
+    .nl a:hover::after{width:100%}
+    .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .hbg span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+    .hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hbg.open span:nth-child(2){opacity:0}
+    .hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mm{display:none;position:fixed;top:66px;left:0;right:0;background:rgba(15,14,12,.99);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:18px 5%;z-index:99}
+    .mm.open{display:block}
+    .mm a{display:block;padding:11px 0;color:var(--textm);text-decoration:none;font-size:15px;border-bottom:1px solid var(--border);transition:color .2s}
+    .mm a:hover{color:#fff}
+
+    /* SHARED */
+    section{position:relative;z-index:1}
+    .con{max-width:1120px;margin:0 auto;padding:0 5%}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;border:none;font-family:'DM Sans',sans-serif}
+    .bp{background:var(--green);color:#080a07}
+    .bp:hover{background:var(--greend)}
+    .bo{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .bo:hover{border-color:var(--chocol);color:var(--chocol)}
+    .sl{width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--textm);font-size:16px;transition:all .2s;text-decoration:none}
+    .sl:hover{background:var(--greeng);border-color:var(--green);color:var(--green)}
+
+    /* HERO */
+    #home{min-height:100vh;display:flex;align-items:center;padding-top:66px}
+    .hi{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding:80px 0}
+    .hbdg{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.22);border-radius:100px;padding:6px 16px;font-size:13px;color:var(--green);margin-bottom:20px}
+    .hbdg::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green)}
+    .ht{font-family:'Syne',sans-serif;font-size:clamp(34px,5.2vw,60px);font-weight:800;line-height:1.08;color:#fff;margin-bottom:20px}
+    .ht .ac{color:var(--green)}
+    .hd{color:var(--textm);font-size:15.5px;line-height:1.8;margin-bottom:32px;max-width:480px}
+    .ha{display:flex;gap:14px;flex-wrap:wrap}
+    .hs{display:flex;gap:12px;margin-top:28px}
+    .hv{display:flex;justify-content:center;align-items:center;position:relative}
+    .hpw{position:relative;width:300px;height:300px}
+    /* Orbiting dots ring — replaces static dashed circle */
+    .hr{position:absolute;inset:-18px;border-radius:50%;animation:orbit 6s linear infinite}
+    @keyframes orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .hr::before,.hr::after{
+      content:'';position:absolute;
+      width:10px;height:10px;border-radius:50%;
+    }
+    /* dot 1 — top */
+    .hr::before{background:var(--green);top:0;left:50%;transform:translateX(-50%);box-shadow:0 0 8px rgba(34,197,94,.7)}
+    /* dot 2 — bottom */
+    .hr::after{background:var(--orange);bottom:0;left:50%;transform:translateX(-50%);box-shadow:0 0 8px rgba(249,115,22,.7)}
+    /* dot 3 — right */
+    .hr .dot3{background:var(--purple);top:50%;right:0;transform:translateY(-50%);box-shadow:0 0 8px rgba(168,85,247,.7);position:absolute;width:10px;height:10px;border-radius:50%}
+    /* dot 4 — left */
+    .hr .dot4{background:var(--chocol);top:50%;left:0;transform:translateY(-50%);box-shadow:0 0 8px rgba(181,99,42,.7);position:absolute;width:10px;height:10px;border-radius:50%}
+    .hp{width:300px;height:300px;border-radius:50%;border:4px solid rgba(34,197,94,.28);background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:80px;overflow:hidden}
+    .hp img{width:100%;height:100%;object-fit:cover}
+    .hfc{position:absolute;background:rgba(24,22,20,.96);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:var(--rs);padding:12px 18px;font-size:13px}
+    .hfc.c1{bottom:20px;left:-34px}
+    .hfc.c2{top:20px;right:-26px}
+    .fcl{color:var(--textm);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+    .fcv{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:#fff}
+
+    /* ABOUT */
+    #about{padding:110px 0}
+    .ag{display:grid;grid-template-columns:1fr 1.5fr;gap:68px;align-items:start}
+
+    /* Presentation-stage photo — matches uploaded reference */
+    .apc{position:relative;border-radius:20px;overflow:hidden;background:#0a0908;box-shadow:8px 8px 0 0 var(--choco),-8px -8px 0 0 var(--purpled),0 0 0 2px rgba(124,63,30,.5)}
+    .apc::before{content:'';position:absolute;top:14px;left:14px;width:34px;height:34px;z-index:3;border-top:3px solid var(--green);border-left:3px solid var(--green);border-radius:4px 0 0 0}
+    .apc::after{content:'';position:absolute;bottom:14px;right:14px;width:34px;height:34px;z-index:3;border-bottom:3px solid var(--orange);border-right:3px solid var(--orange);border-radius:0 0 4px 0}
+    .apc img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top center;filter:contrast(1.06) brightness(.96)}
+    .apf{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:80px;color:var(--green);background:var(--bg3)}
+    .apl{position:absolute;bottom:0;left:0;right:0;padding:38px 20px 16px;background:linear-gradient(transparent,rgba(8,6,4,.94));z-index:2}
+    .apn{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#fff}
+    .apr{font-size:12px;color:var(--green);letter-spacing:1px;text-transform:uppercase}
+
+    .aig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+    .aii{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:12px 14px}
+    .aii .lb{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--textm);margin-bottom:3px}
+    .aii .vl{font-size:13px;color:var(--text);font-weight:500;word-break:break-word}
+    .aii .vl a{color:var(--green);text-decoration:none}
+
+    .sr{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+    .sc{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:16px 10px;text-align:center}
+    .sc i{font-size:19px;margin-bottom:6px;display:block}
+    .sc .nm{font-family:'Syne',sans-serif;font-weight:800;font-size:19px;color:#fff}
+    .sc .ds{font-size:11px;color:var(--textm);margin-top:2px}
+
+    /* SKILLS */
+    #skills{padding:110px 0;background:rgba(0,0,0,.16)}
+    .skl{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:42px}
+    .ski{margin-bottom:20px}
+    .skh{display:flex;justify-content:space-between;margin-bottom:7px;font-size:14px;font-weight:500}
+    .skn{color:var(--text)}
+    .skp{font-weight:700;font-size:13px}
+    .skt{width:100%;height:7px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
+    .skb{height:100%;border-radius:100px;width:0%}
+    /* bar colours */
+    .bg{background:linear-gradient(90deg,var(--greend),var(--green))}
+    .bc{background:linear-gradient(90deg,var(--choco),var(--chocol))}
+    .bp2{background:linear-gradient(90deg,var(--purpled),var(--purple))}
+    .bo2{background:linear-gradient(90deg,var(--oranged),var(--orange))}
+    .bgr{background:linear-gradient(90deg,var(--grayd),var(--grayl))}
+
+    .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:42px}
+    .tp{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:10px 13px;font-size:12.5px;font-weight:500;text-align:center;cursor:default;transition:all .2s}
+    .tp:hover{border-color:var(--green);color:var(--green);background:var(--greeng)}
+
+    /* RESUME */
+    #resume{padding:110px 0}
+    .rg{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:42px}
+    .tc h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:28px;display:flex;align-items:center;gap:9px;color:#fff}
+    .tc h3 i{color:var(--green)}
+    .ti{position:relative;padding-left:24px;padding-bottom:30px}
+    .ti::before{content:'';position:absolute;left:5px;top:13px;bottom:0;width:1px;background:var(--border)}
+    .ti:last-child{padding-bottom:0}
+    .ti:last-child::before{display:none}
+    .td2{position:absolute;left:0;top:5px;width:13px;height:13px;border-radius:50%;background:var(--bg3);border:2px solid var(--green)}
+    .tdt{font-size:11.5px;color:var(--orange);font-weight:600;letter-spacing:.5px;margin-bottom:4px}
+    .ttl{font-family:'Syne',sans-serif;font-weight:700;font-size:14.5px;color:#fff;margin-bottom:3px}
+    .tog{font-size:12.5px;color:var(--chocol);margin-bottom:7px}
+    .tds{font-size:13px;color:var(--textm);line-height:1.7}
+
+    /* PORTFOLIO */
+    #portfolio{padding:110px 0;background:rgba(0,0,0,.16)}
+    .pf{display:flex;gap:9px;margin:32px 0 26px;flex-wrap:wrap}
+    .fb{padding:7px 18px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--textm);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+    .fb.active,.fb:hover{background:var(--green);color:#080a07;border-color:var(--green)}
+    .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .pc{border-radius:var(--r);border:1px solid var(--border);background:var(--card);overflow:hidden;cursor:pointer;transition:all .25s}
+    .pc:hover{border-color:rgba(34,197,94,.3);transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,.4)}
+    .pt{aspect-ratio:16/10;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--green);position:relative}
+    .pt::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(168,85,247,.06))}
+    .pb{padding:16px}
+    .pcat{font-size:10.5px;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);font-weight:600;margin-bottom:4px}
+    .ptl{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#fff;margin-bottom:6px}
+    .pdc{font-size:12.5px;color:var(--textm);line-height:1.6}
+    .ptags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+    .tag{background:rgba(34,197,94,.08);color:var(--green);border:1px solid rgba(34,197,94,.16);border-radius:5px;padding:2px 9px;font-size:10.5px;font-weight:500}
+
+    /* SERVICES */
+    #services{padding:110px 0}
+    .svg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+    .svc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 24px;position:relative;overflow:hidden;transition:all .25s}
+    .svc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
+    .svc:hover{border-color:rgba(34,197,94,.22);transform:translateY(-4px)}
+    .svc:hover::before{opacity:1}
+    .s1::before{background:linear-gradient(90deg,var(--greend),var(--green))}
+    .s2::before{background:linear-gradient(90deg,var(--choco),var(--chocol))}
+    .s3::before{background:linear-gradient(90deg,var(--purpled),var(--purple))}
+    .s4::before{background:linear-gradient(90deg,var(--oranged),var(--orange))}
+    .s5::before{background:linear-gradient(90deg,var(--grayd),var(--grayl))}
+    .svi{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;border:1px solid}
+    .i1{background:rgba(34,197,94,.09);border-color:rgba(34,197,94,.2);color:var(--green)}
+    .i2{background:rgba(124,63,30,.13);border-color:rgba(181,99,42,.28);color:var(--chocol)}
+    .i3{background:rgba(168,85,247,.09);border-color:rgba(168,85,247,.2);color:var(--purple)}
+    .i4{background:rgba(249,115,22,.09);border-color:rgba(249,115,22,.2);color:var(--orange)}
+    .i5{background:rgba(107,114,128,.09);border-color:rgba(107,114,128,.22);color:var(--grayl)}
+    .svt{font-family:'Syne',sans-serif;font-weight:700;font-size:15.5px;color:#fff;margin-bottom:9px}
+    .svd{font-size:13px;color:var(--textm);line-height:1.75}
+
+    /* TESTIMONIALS */
+    #testimonials{padding:110px 0;background:rgba(0,0,0,.16)}
+    .teg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:42px}
+    .tec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:all .25s}
+    .tec:hover{border-color:rgba(34,197,94,.22);transform:translateY(-3px)}
+    .teq{font-size:24px;color:var(--chocol);line-height:1;margin-bottom:11px}
+    .tet{font-size:14px;color:var(--textm);line-height:1.75;margin-bottom:16px;font-style:italic}
+    .tes{color:#f59e0b;font-size:13px;margin-bottom:13px;letter-spacing:2px}
+    .tea{display:flex;align-items:center;gap:12px}
+    .tav{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--greend),var(--purpled));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:#fff;flex-shrink:0}
+    .tan{font-family:'Syne',sans-serif;font-weight:700;font-size:13.5px;color:#fff}
+    .tar{font-size:11.5px;color:var(--textm)}
+
+    /* CONTACT */
+    #contact{padding:110px 0}
+    .cg{display:grid;grid-template-columns:1fr 1.35fr;gap:52px;margin-top:42px}
+    .cii{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px}
+    .cic{width:43px;height:43px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:1px solid}
+    .ci1{background:rgba(34,197,94,.09);border-color:rgba(34,197,94,.2);color:var(--green)}
+    .ci2{background:rgba(249,115,22,.09);border-color:rgba(249,115,22,.2);color:var(--orange)}
+    .ci3{background:rgba(124,63,30,.13);border-color:rgba(181,99,42,.28);color:var(--chocol)}
+    .cil{font-size:10.5px;color:var(--textm);text-transform:uppercase;letter-spacing:1px}
+    .civ{font-size:14px;color:#fff;font-weight:500;margin-top:2px}
+    .cf{display:flex;flex-direction:column;gap:13px}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    .fg{display:flex;flex-direction:column;gap:6px}
+    .fg label{font-size:11px;color:var(--textm);font-weight:500;text-transform:uppercase;letter-spacing:.8px}
+    .fc{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:11px 14px;font-size:14px;color:var(--text);font-family:'DM Sans',sans-serif;transition:border-color .2s,box-shadow .2s;resize:none;outline:none}
+    .fc::placeholder{color:rgba(156,163,175,.4)}
+    .fc:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(34,197,94,.08)}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;flex-wrap:wrap;gap:14px}
+    .fcp{font-size:13px;color:var(--textm)}
+    .fcp span{color:var(--green)}
+    .fs{display:flex;gap:9px}
+
+    /* RESPONSIVE */
+    @media(max-width:920px){
+      .hi{grid-template-columns:1fr;text-align:center;gap:44px}
+      .hv{order:-1}
+      .hd{margin:0 auto 30px}
+      .ha,.hs{justify-content:center}
+      .ag{grid-template-columns:1fr}
+      .apc{max-width:320px;margin:0 auto}
+      .skl{grid-template-columns:1fr}
+      .rg{grid-template-columns:1fr}
+      .pg{grid-template-columns:1fr 1fr}
+      .svg{grid-template-columns:1fr 1fr}
+      .teg{grid-template-columns:1fr}
+      .cg{grid-template-columns:1fr}
+      .sr{grid-template-columns:repeat(2,1fr)}
+      .fr{grid-template-columns:1fr}
+      .nl{display:none}
+      .hbg{display:flex}
+      .hfc.c1{left:0}
+      .hfc.c2{right:0}
+    }
+    @media(max-width:600px){
+      .pg{grid-template-columns:1fr}
+      .svg{grid-template-columns:1fr}
+      .tg{grid-template-columns:repeat(2,1fr)}
+      .aig{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nb">NCA<span>.</span></a>
+  <ul class="nl">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hbg" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mm" id="mobileMenu">
+  <a href="#home">Home</a><a href="#about">About</a>
+  <a href="#skills">Skills</a><a href="#resume">Resume</a>
+  <a href="#portfolio">Portfolio</a><a href="#services">Services</a>
+  <a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="con">
+    <div class="hi">
+      <div>
+        <div class="hbdg">Available for Freelance Work</div>
+        <h1 class="ht">Ndongozi<br><span class="ac">Chris Arsene</span></h1>
+        <p class="hd">Full-Stack Developer &amp; Electronic/Telecommunication Engineer based in Kigali, Rwanda. I build modern web applications, mobile apps, and impactful digital solutions.</p>
+        <div class="ha">
+          <a href="#portfolio" class="btn bp"><i class="fas fa-rocket"></i> View My Work</a>
+          <a href="#contact"   class="btn bo"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+        </div>
+        <div class="hs">
+          <a href="https://wa.me/250781725264" class="sl" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.linkedin.com/in/ndongozi-chris-arsene-ab9421389" class="sl" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/NdongoziChrisArsene" class="sl" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://x.com/1st_among2026" class="sl" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/chrisarsenendongozi" class="sl" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="hv">
+        <div class="hpw">
+          <div class="hr"><span class="dot3"></span><span class="dot4"></span></div>
+          <div class="hp">
+            <img src="./images/MyProfile.png" alt="Ndongozi Chris Arsene" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="hfc c1"><div class="fcl">Experience</div><div class="fcv">2+ Years</div></div>
+        <div class="hfc c2"><div class="fcl">Projects</div><div class="fcv">50+</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="con">
+    <span class="slbl">Who I Am</span>
+    <h2 class="stitle">About Me</h2>
+    <div class="ag">
+      <!-- Presentation-stage photo card matching reference image -->
+      <div>
+        <div class="apc">
+          <img src="./images/Profile.png" alt="Ndongozi Chris Arsene"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="apf" style="display:none;"><i class="fas fa-user"></i></div>
+          <div class="apl">
+            <div class="apn">Ndongozi Chris Arsene</div>
+            <div class="apr">Full-Stack Developer</div>
+          </div>
+        </div>
+      </div>
+      <!-- Info -->
+      <div>
+        <h3 class="stitle" style="font-size:25px;margin-bottom:12px;">Software Developer &amp; Engineer</h3>
+        <p style="color:var(--textm);font-size:14.5px;line-height:1.85;margin-bottom:20px;">I am a Rwandan full-stack web developer and electronic telecommunication &amp; technology engineer, passionate about building modern digital solutions. I specialize in React.js, Node.js, and PostgreSQL, with real-world experience across web, mobile, and network engineering.</p>
+        <div class="aig">
+          <div class="aii"><div class="lb">Birthday</div><div class="vl">14 October 2001</div></div>
+          <div class="aii"><div class="lb">Phone</div><div class="vl">+250 781 725 264</div></div>
+          <div class="aii"><div class="lb">Email</div><div class="vl"><a href="mailto:arsenendongozi@gmail.com">arsenendongozi@gmail.com</a></div></div>
+          <div class="aii"><div class="lb">Location</div><div class="vl">Kigali, Rwanda</div></div>
+          <div class="aii"><div class="lb">Degree</div><div class="vl">Bachelor — Electronic, Telecom  &amp; Technology</div></div>
+          <div class="aii"><div class="lb">GitHub</div><div class="vl"><a href="https://github.com/NdongoziChrisArsene" target="_blank">NdongoziChrisArsene</a></div></div>
+        </div>
+        <div class="sr">
+          <div class="sc"><i class="fas fa-smile" style="color:var(--green)"></i><div class="nm">100+</div><div class="ds">Happy Clients</div></div>
+          <div class="sc"><i class="fas fa-briefcase" style="color:var(--orange)"></i><div class="nm">50+</div><div class="ds">Projects</div></div>
+          <div class="sc"><i class="fas fa-headset" style="color:var(--purple)"></i><div class="nm">500+</div><div class="ds">Hours Support</div></div>
+          <div class="sc"><i class="fas fa-award" style="color:var(--chocol)"></i><div class="nm">7</div><div class="ds">Certificates</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="con">
+    <span class="slbl">What I Can Do</span>
+    <h2 class="stitle">My Skills</h2>
+    <div class="skl">
+      <!-- Animated bars — ONLY animation on the page -->
+      <div>
+        <p style="color:var(--textm);margin-bottom:26px;font-size:14.5px;">Proficiency across web, mobile, cloud, and engineering domains.</p>
+
+        <div class="ski">
+          <div class="skh"><span class="skn">UI/UX Designer</span><span class="skp" style="color:var(--green)">0%</span></div>
+          <div class="skt"><div class="skb bg" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">Mobile Development</span><span class="skp" style="color:var(--purple)">0%</span></div>
+          <div class="skt"><div class="skb bp2" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">Front-end Development</span><span class="skp" style="color:var(--orange)">0%</span></div>
+          <div class="skt"><div class="skb bo2" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">Back-end Development</span><span class="skp" style="color:var(--chocol)">0%</span></div>
+          <div class="skt"><div class="skb bc" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">WordPress Development</span><span class="skp" style="color:var(--grayl)">0%</span></div>
+          <div class="skt"><div class="skb bgr" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">Freelance Development</span><span class="skp" style="color:var(--green)">0%</span></div>
+          <div class="skt"><div class="skb bg" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">DevOps</span><span class="skp" style="color:var(--purple)">0%</span></div>
+          <div class="skt"><div class="skb bp2" data-w="100"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">English</span><span class="skp" style="color:var(--orange)">0%</span></div>
+          <div class="skt"><div class="skb bo2" data-w="87"></div></div>
+        </div>
+        <div class="ski">
+          <div class="skh"><span class="skn">French</span><span class="skp" style="color:var(--chocol)">0%</span></div>
+          <div class="skt"><div class="skb bc" data-w="90"></div></div>
+        </div>
+      </div>
+
+      <!-- Tech pills -->
+      <div>
+        <p style="color:var(--textm);margin-bottom:0;font-size:14.5px;">Technologies &amp; Tools I work with regularly.</p>
+        <div class="tg">
+          <div class="tp">React.js</div><div class="tp">Node.js</div><div class="tp">Express.js</div>
+          <div class="tp">PostgreSQL</div><div class="tp">Prisma ORM</div><div class="tp">React Native</div>
+          <div class="tp">Python</div><div class="tp">Django</div><div class="tp">Firebase</div>
+          <div class="tp">JWT Auth</div><div class="tp">Git / GitHub</div><div class="tp">Docker</div>
+          <div class="tp">WordPress</div><div class="tp">Tailwind CSS</div><div class="tp">MySQL</div>
+          <div class="tp">GCP / AWS</div><div class="tp">REST APIs</div><div class="tp">HTML &amp; CSS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="con">
+    <span class="slbl">My Background</span>
+    <h2 class="stitle">Resume</h2>
+    <div class="rg">
+      <div class="tc">
+        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+        <div class="ti"><div class="td2"></div><div class="tdt">2022 – 2024</div><div class="ttl">BSc Electronic, Telecommunication &amp; Technology Engineering</div><div class="tog">IPRC Kigali College — Kigali, Rwanda</div><div class="tds">Electronic systems, telecom networks, signal processing, network infrastructure with hands-on lab work and building modern digital solutions.</div></div>
+        <div class="ti"><div class="td2"></div><div class="tdt">2024 – 2025</div><div class="ttl">Full-Stack Web Development Training</div><div class="tog">Ida Technology — Rwanda TVT Board · Kigali</div><div class="tds">HTML, CSS, JavaScript, React.js, Node.js, Python, Django, Firebase, React Native, and UI/UX Design.</div></div>
+        <div class="ti"><div class="td2"></div><div class="tdt">2025 – 2026</div><div class="ttl">Digital Talent Program — 1 Million Coders</div><div class="tog">DTP — Rwanda ICT Chamber · Kigali</div><div class="tds">Advanced full-stack development under the ICT Chamber initiative, building production-ready applications.</div></div>
+      </div>
+      <div class="tc">
+        <h3><i class="fas fa-briefcase"></i> Experience</h3>
+        <div class="ti"><div class="td2"></div><div class="tdt">2023 – 2024</div><div class="ttl">Electronic &amp; Telecom Engineer</div><div class="tog">Darcom Company LTD — MTN Network · Kigali</div><div class="tds">Contributed to the installation, maintenance, and optimization of MTN's telecommunication infrastructure across Rwanda. This included developing Python-based network automation scripts, integrating telecom systems via APIs, and building dashboards for real-time network traffic monitoring.</div></div>
+        <div class="ti"><div class="td2"></div><div class="tdt">2024 – 2025</div><div class="ttl">Full-Stack Developer Intern</div><div class="tog">Codveda Technologies — Remote</div><div class="tds">REST APIs, CRUD apps, real-time chat, and a school management platform using React.js, Node.js, PostgreSQL, Prisma ORM, and JWT authentication.</div></div>
+        <div class="ti"><div class="td2"></div><div class="tdt">2025 – 2026</div><div class="ttl">Android &amp; Mobile Developer Intern</div><div class="tog">SyntechHub — Remote</div><div class="tds">Cross-platform Android applications using React Native, focusing on smooth UX and component-based architecture.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="con">
+    <span class="slbl">My Work</span>
+    <h2 class="stitle">Portfolio</h2>
+    <div class="pf">
+      <button class="fb active" onclick="fp('all',this)">All</button>
+      <button class="fb" onclick="fp('web',this)">Web</button>
+      <button class="fb" onclick="fp('app',this)">Mobile App</button>
+      <button class="fb" onclick="fp('api',this)">API / Backend</button>
+    </div>
+    <div class="pg" id="pg">
+      <div class="pc" data-cat="web"><div class="pt"><i class="fas fa-school"></i></div><div class="pb"><div class="pcat">Web — Full Stack</div><div class="ptl">School Management System</div><div class="pdc">PERN-stack platform with JWT authentication and role-based access control.</div><div class="ptags"><span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span></div></div></div>
+      <div class="pc" data-cat="api"><div class="pt"><i class="fas fa-server"></i></div><div class="pb"><div class="pcat">API — Backend</div><div class="ptl">School REST API</div><div class="pdc">Full CRUD REST API with Express.js, Prisma ORM, and PostgreSQL.</div><div class="ptags"><span class="tag">Express.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div></div></div>
+      <div class="pc" data-cat="web"><div class="pt"><i class="fas fa-comments"></i></div><div class="pb"><div class="pcat">Web — Real-Time</div><div class="ptl">Real-Time Chat App</div><div class="pdc">Live messaging with WebSocket, Node.js backend, and PostgreSQL persistence.</div><div class="ptags"><span class="tag">WebSocket</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div></div></div>
+      <div class="pc" data-cat="app"><div class="pt"><i class="fas fa-mobile-alt"></i></div><div class="pb"><div class="pcat">Mobile — React Native</div><div class="ptl">Cross-Platform Mobile App</div><div class="pdc">Android/iOS app with smooth UX and component-based architecture.</div><div class="ptags"><span class="tag">React Native</span><span class="tag">Android</span><span class="tag">iOS</span></div></div></div>
+      <div class="pc" data-cat="web"><div class="pt"><i class="fas fa-user-circle"></i></div><div class="pb"><div class="pcat">Web — Frontend</div><div class="ptl">React Portfolio (v1)</div><div class="pdc">Dynamic portfolio with Vite and React, fetching data via Axios from JSONPlaceholder.</div><div class="ptags"><span class="tag">React.js</span><span class="tag">Vite</span><span class="tag">Axios</span></div></div></div>
+      <div class="pc" data-cat="web"><div class="pt"><i class="fas fa-shield-alt"></i></div><div class="pb"><div class="pcat">Web — Dashboard</div><div class="ptl">CHILDGuard Dashboard</div><div class="pdc">Monitoring dashboard with clean UI and data visualization.</div><div class="ptags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="con">
+    <span class="slbl">What I Offer</span>
+    <h2 class="stitle">Services</h2>
+    <p style="color:var(--textm);max-width:580px;font-size:14.5px;margin-bottom:0;">Professional services in software development, mobile engineering, and telecommunication.</p>
+    <div class="svg">
+      <div class="svc s1"><div class="svi i1"><i class="fas fa-code"></i></div><div class="svt">Web Development</div><div class="svd">Modern, responsive websites and full-stack web apps using React.js, Node.js, Django, and PostgreSQL — from landing pages to complex systems.</div></div>
+      <div class="svc s4"><div class="svi i4"><i class="fas fa-mobile-alt"></i></div><div class="svt">Mobile App Development</div><div class="svd">Cross-platform mobile apps for Android and iOS using React Native, delivering smooth and user-friendly experiences on all devices.</div></div>
+      <div class="svc s3"><div class="svi i3"><i class="fas fa-database"></i></div><div class="svt">Database Design &amp; Management</div><div class="svd">Design, manage, and optimize relational databases using PostgreSQL and MySQL, including data modeling and Prisma ORM integration.</div></div>
+      <div class="svc s2"><div class="svi i2"><i class="fas fa-laptop-code"></i></div><div class="svt">Freelance Development</div><div class="svd">High-quality, scalable applications tailored to client needs. Available for remote short or long-term projects worldwide.</div></div>
+      <div class="svc s5"><div class="svi i5"><i class="fas fa-network-wired"></i></div><div class="svt">Electronic, Telecom &amp; Technology Engineering</div><div class="svd">Telecom systems, network installation and maintenance, Python network scripts, monitoring dashboards, and hardware-to-web integration.</div></div>
+      <div class="svc s4"><div class="svi i4"><i class="fas fa-lightbulb"></i></div><div class="svt">Tech Consulting</div><div class="svd">Expert technical advice on software architecture, technology stack selection, and digital transformation strategies for individuals and businesses.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="con">
+    <span class="slbl">What People Say</span>
+    <h2 class="stitle">Testimonials</h2>
+    <div class="teg">
+      <div class="tec"><div class="teq"><i class="fas fa-quote-left"></i></div><div class="tet">Chris is an exceptional developer who consistently delivers high-quality, well-structured solutions. He brings both technical skill and professionalism to every project.</div><div class="tes">★★★★★</div><div class="tea"><div class="tav">EN</div><div><div class="tan">Emmanuel NZABAREGERIMANA</div><div class="tar">CEO</div></div></div></div>
+      <div class="tec"><div class="teq"><i class="fas fa-quote-left"></i></div><div class="tet">Very professional and detail-oriented. Working with Chris was a great experience — he understands requirements quickly and delivers clean, maintainable code.</div><div class="tes">★★★★★</div><div class="tea"><div class="tav">IP</div><div><div class="tan">ISHIMWE Pacifique</div><div class="tar">Software Engineer</div></div></div></div>
+      <div class="tec"><div class="teq"><i class="fas fa-quote-left"></i></div><div class="tet">A talented developer with a solid engineering mindset. Chris always brings fresh ideas and reliable implementation to every challenge.</div><div class="tes">★★★★★</div><div class="tea"><div class="tav">MH</div><div><div class="tan">Merci Arsene HATEGEKIMANA</div><div class="tar">Software Engineer</div></div></div></div>
+      <div class="tec"><div class="teq"><i class="fas fa-quote-left"></i></div><div class="tet">Highly recommend Chris for any full-stack project. He is proactive, communicates well, and always delivers on time with great attention to detail.</div><div class="tes">★★★★★</div><div class="tea"><div class="tav">LK</div><div><div class="tan">Linne Heaven KUBAHO</div><div class="tar">Software Engineer</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="con">
+    <span class="slbl">Let's Talk</span>
+    <h2 class="stitle">Get In Touch</h2>
+    <div class="cg">
+      <div>
+        <p style="color:var(--textm);font-size:14.5px;margin-bottom:28px;line-height:1.8;">Have a project in mind or want to discuss opportunities? I'm always open to new collaborations and challenges. Feel free to reach out anytime.</p>
+        <div class="cii"><div class="cic ci1"><i class="fas fa-map-marker-alt"></i></div><div><div class="cil">Location</div><div class="civ">Kigali, Rwanda</div></div></div>
+        <div class="cii"><div class="cic ci2"><i class="fas fa-phone"></i></div><div><div class="cil">Phone</div><div class="civ">+250 781 725 264</div></div></div>
+        <div class="cii"><div class="cic ci3"><i class="fas fa-envelope"></i></div><div><div class="cil">Email</div><div class="civ">arsenendongozi@gmail.com</div></div></div>
+      </div>
+      <div class="cf">
+        <div class="fr">
+          <div class="fg"><label>Your Name</label><input type="text" class="fc" placeholder="John Doe"></div>
+          <div class="fg"><label>Your Email</label><input type="email" class="fc" placeholder="john@example.com"></div>
+        </div>
+        <div class="fg"><label>Subject</label><input type="text" class="fc" placeholder="Project Collaboration"></div>
+        <div class="fg"><label>Message</label><textarea class="fc" rows="5" placeholder="Tell me about your project..."></textarea></div>
+        <button class="btn bp" onclick="submitForm(this)" style="align-self:flex-start;padding:12px 28px;">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="fcp">© 2025 <span>Ndongozi Chris Arsene</span> — All Rights Reserved</div>
+    <div style="font-size:12px;color:var(--textm);margin-top:4px;">Full-Stack Developer &amp; Telecom Engineer · Kigali, Rwanda</div>
+  </div>
+  <div class="fs">
+    <a href="https://wa.me/250781725264" class="sl" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.linkedin.com/in/ndongozi-chris-arsene-ab9421389" class="sl" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/NdongoziChrisArsene" class="sl" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://x.com/1st_among2026" class="sl" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.facebook.com/share/17TQiBghQD/" class="sl" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/chrisarsenendongozi" class="sl" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<script>
+  /* ── Hamburger ── */
+  const menuBtn = document.getElementById('menuBtn');
+  const mm      = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('open');mm.classList.toggle('open')});
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBtn.classList.remove('open');mm.classList.remove('open')}));
+
+  /* ── SKILLS: increment counter animation — THE ONLY ANIMATION ── */
+  let ran = false;
+  const skillSec = document.getElementById('skills');
+
+  function runBars(){
+    document.querySelectorAll('.skb').forEach(bar=>{
+      const target  = parseInt(bar.dataset.w);
+      const pctEl   = bar.closest('.ski').querySelector('.skp');
+      let   cur     = 0;
+      const ms      = 1600;
+      const tick    = 16;
+      const inc     = target / (ms / tick);
+      const t = setInterval(()=>{
+        cur += inc;
+        if(cur >= target){ cur = target; clearInterval(t); }
+        bar.style.width   = cur.toFixed(1) + '%';
+        pctEl.textContent = Math.round(cur) + '%';
+      }, tick);
+    });
+  }
+
+  new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !ran){ ran=true; runBars(); }
+    });
+  },{threshold:0.15}).observe(skillSec);
+
+  /* ── Portfolio filter ── */
+  function fp(cat,btn){
+    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.pc').forEach(c=>{
+      c.style.display = (cat==='all'||c.dataset.cat===cat)?'':'none';
+    });
+  }
+
+  /* ── Contact form ── */
+  function submitForm(btn){
+    btn.innerHTML='<i class="fas fa-check"></i> Message Sent!';
+    btn.style.background='var(--greend)';btn.disabled=true;
+    setTimeout(()=>{btn.innerHTML='<i class="fas fa-paper-plane"></i> Send Message';btn.style.background='';btn.disabled=false;},3000);
+  }
+
+  /* ── Navbar scroll ── */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('navbar').style.background=
+      window.scrollY>50?'rgba(15,14,12,.99)':'rgba(15,14,12,.93)';
+  });
+</script>
+</body>
+</html>
